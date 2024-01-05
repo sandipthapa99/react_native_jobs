@@ -14,13 +14,13 @@ import { icons, SIZES } from "../../../constants";
 import styles from "./welcome.style";
 
 const jobTypes = ["Full-time", "Part-time", "Contractor"];
-const Welcome = () => {
+const Welcome = ({ searchTerm, setSearchTerm, handleClick }) => {
   const [activeJobType, setActiveJobType] = useState("Full-Time");
   const router = useRouter();
   return (
     <View>
       <View style={styles.container}>
-        <Text style={styles.userName}>Hello Shizen</Text>
+        <Text style={styles.userName}>Hello there 👋,</Text>
         <Text style={styles.welcomeMessage}>Find your perfect job</Text>
       </View>
 
@@ -28,12 +28,14 @@ const Welcome = () => {
         <View style={styles.searchWrapper}>
           <TextInput
             style={styles.searchInput}
-            value=""
-            onChange={() => {}}
+            value={searchTerm}
+            onChangeText={(text) => {
+              setSearchTerm(text);
+            }}
             placeholder="What are you looking for?"
           />
         </View>
-        <TouchableOpacity style={styles.searchBtn} onPress={() => {}}>
+        <TouchableOpacity style={styles.searchBtn} onPress={handleClick}>
           <Image
             style={styles.searchBtnImage}
             source={icons.search}
